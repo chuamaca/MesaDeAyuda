@@ -1,0 +1,12 @@
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Debug\Model.dll.config
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Debug\Model.dll
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Debug\Model.pdb
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Debug\EntityFramework.dll
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Debug\EntityFramework.xml
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Debug\Model.Migrations.InitialModel.resources
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Debug\Model.csproj.GenerateResource.Cache
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Debug\Model.dll
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Debug\Model.pdb
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

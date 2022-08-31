@@ -1,0 +1,382 @@
+﻿@model Model.TKincidente
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Crud";
+
+}
+
+<link href="~/Assets/slider.css" rel="stylesheet" />
+
+
+@*<script>
+        $(function () {
+            var dateFormat = "",
+              from = $("#fcreacion")
+                .datepicker({
+                    defaultDate: "+1w",
+                    beforeShowDay: $.datepicker.noWeekends,
+                    dateFormat: "dd/mm/yy",
+                    changeMonth: true,
+                    numberOfMonths: 1
+                })
+                .on("change", function () {
+                    to.datepicker("option", "minDate", getDate(this));
+                }),
+              to = $("#rentingfin").datepicker({
+                  defaultDate: "+1w",
+                  beforeShowDay: $.datepicker.noWeekends,
+                  dateFormat: "dd/mm/yy",
+                  changeMonth: true,
+                  numberOfMonths: 1
+              })
+              .on("change", function () {
+                  from.datepicker("option", "maxDate", getDate(this));
+              });
+            function getDate(element) {
+                var date;
+                try {
+                    date = $.datepicker.parseDate(dateFormat = "dd/mm/yy", element.value);
+                } catch (error) {
+                    date = null;
+                }
+                return date;
+            }
+        });
+    </script>*@
+
+<script>
+
+    window.onload
+
+    var $styleSwitcher = $('#style_switcher');
+    if (!$styleSwitcher.hasClass('switcher_open')) {
+        $styleSwitcher.addClass('switcher_open')
+        $('#flecha').attr('class', 'fa fa-angle-double-right');
+    }
+
+
+    function Colapse_Switcher() {
+        // Switch theme color
+        var $styleSwitcher = $('#style_switcher');
+        if (!$styleSwitcher.hasClass('switcher_open')) {
+            $styleSwitcher.addClass('switcher_open')
+            $('#flecha').attr('class', 'fa fa-angle-double-right');
+        } else {
+            $styleSwitcher.removeClass('switcher_open');
+            $('#flecha').attr('class', 'fa fa-angle-double-left');
+        }
+    };
+
+</script>
+
+
+
+@*<script>
+        window.onload = function () {
+            var fecha = new Date(); //Fecha actual
+            var mes = fecha.getMonth() + 1; //obteniendo mes
+            var dia = fecha.getDate(); //obteniendo dia
+            var ano = fecha.getFullYear(); //obteniendo año
+            if (dia < 10)
+                dia = '0' + dia; //agrega cero si el menor de 10
+            if (mes < 10)
+                mes = '0' + mes //agrega cero si el menor de 10
+
+            ab = document.getElementById("fcreacion");
+
+
+            if (ab.value == "") {
+                document.getElementById('fcreacion').value = dia + "/" + mes + "/" + ano;
+                document.getElementById('fatencion').value = dia + "/" + mes + "/" + ano;
+            } else {
+                document.getElementById("fcreacion");
+                document.getElementById("fatencion");
+
+            }
+
+
+        }
+    </script>*@
+
+
+
+
+
+
+    @using (Html.BeginForm("Guardar", "Incidente", FormMethod.Post))
+    {
+
+        <div id="style_switcher" style="background-color: white; border-color: rgb(28, 163, 97) !important;" class="switcher_open">
+
+            <a class="switcher_toggle" onclick="Colapse_Switcher();"><span id="flecha" class="fa fa-angle-double-right"></span></a>
+            <div class="style_items">
+
+                <div id="PanelPreguntas" style="border-color: #1ca361 !important" class="panel panel-default">
+                    <div style="background-color: white; border-color: #1ca361 !important" class="panel-heading"><strong style="color: gray">Respuestas Inmediatas</strong></div>
+                    <div style="background-color: white; border-color: #1ca361 !important" class="panel-body">
+
+                        <ul id="PFrecuentes" class="list-group">
+
+                            <li id="PreguntaFrecuente" class="list-group-item filtro">
+
+                                <a target="_blank" href="buscaDetalle.aspx?Pregunta=563" id="ayuda">¿Para qué sirve la opción de Relación Clase - Proveedor?</a>
+
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="well">
+                    <div id="yo" class="page">
+
+
+
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Información de Incidente</a></li>
+                            @*<li role="presentation" class="active">  </li>*@
+
+                        </ul>
+
+
+
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" style="scrollbar-base-color:ButtonHighlight aliceblue;" id="info">
+
+                                <div class="form-horizontal">
+                                    <p></p>
+                                    <fieldset>
+
+
+                                        <div class="form-group">
+
+                                            @Html.TextBoxFor(x => x.idincidente, htmlAttributes: new { @type = "hidden" })
+
+
+                                        </div>
+
+
+
+                                        <div class="form-group">
+
+
+                                            @Html.LabelFor(x => x.numeroinc, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(x => x.numeroinc, new { @class = "input-12 col-sm-8", placeholder = "N° Ticket" })
+                                                @Html.ValidationMessageFor(x => x.numeroinc, null, new { @class = "label label-danger" })
+                                            </div>
+
+                                            @Html.LabelFor(x => x.inccasoempresa, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(x => x.inccasoempresa, new { @class = "input-12 col-sm-4", placeholder = "INC" })
+                                                @Html.ValidationMessageFor(x => x.inccasoempresa, null, new { @class = "label label-danger" })
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                        <div class="form-group">
+
+
+
+                                            @Html.LabelFor(x => x.incempresa, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(x => x.incempresa, new { @class = "input-12 col-sm-12", placeholder = "Empresa - Cliente" })
+                                                @Html.ValidationMessageFor(x => x.incempresa, null, new { @class = "label label-danger" })
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.incusuario, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(x => x.incusuario, new { @class = "input-12 col-sm-12", placeholder = "Usuario Final" })
+                                                @Html.ValidationMessageFor(x => x.incusuario, null, new { @class = "label label-danger" })
+                                            </div>
+
+                                            @Html.LabelFor(x => x.incemail, new { @class = "col-sm-1 control-label pull-left" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(x => x.incemail, new { @class = "input-12 col-sm-12", placeholder = "Correo" })
+                                                @Html.ValidationMessageFor(x => x.incemail, null, new { @class = "label label-danger" })
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.inctelefono, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(x => x.inctelefono, new { @class = "input-12 col-sm-12", placeholder = "Telefono" })
+                                                @Html.ValidationMessageFor(x => x.inctelefono, null, new { @class = "label label-danger" })
+                                            </div>
+
+                                            @Html.LabelFor(x => x.incdirsecundario, new { @class = "col-sm-1 control-label pull-left" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(x => x.incdirsecundario, new { @class = "input-12 col-sm-12", placeholder = "Direccion" })
+                                                @Html.ValidationMessageFor(x => x.incdirsecundario, null, new { @class = "label label-danger" })
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.tipoticket, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(x => x.tipoticket, new { @class = "input-12 col-sm-12", placeholder = "" })
+                                                @Html.ValidationMessageFor(x => x.tipoticket, null, new { @class = "label label-danger" })
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group">
+
+
+
+                                            @Html.LabelFor(x => x.incbrevedescripcion, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(x => x.incbrevedescripcion, new { @class = "input-12 col-sm-12", placeholder = "Breve Descripcion" })
+                                                @Html.ValidationMessageFor(x => x.incbrevedescripcion, null, new { @class = "label label-danger" })
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.incdescripcion, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-10">
+                                                @Html.TextAreaFor(x => x.incdescripcion, new { @class = "input-12 col-sm-12", placeholder = "Minimo 50 Caracteres", @rows = "4" })
+                                                @Html.ValidationMessageFor(x => x.incdescripcion, null, new { @class = "label label-danger" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+
+
+
+                                            @Html.LabelFor(x => x.fatencion, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(x => x.fatencion, new { @class = "input-12 col-sm-4 datepicker", placeholder = "DD/MM/AAAA" })
+                                                @Html.ValidationMessageFor(x => x.fatencion, null, new { @class = "label label-danger" })
+                                            </div>
+
+                                            @Html.LabelFor(x => x.hatencion, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(x => x.hatencion, new { @class = "input-12 col-sm-8", placeholder = "HH:MM:SS" })
+                                                @Html.ValidationMessageFor(x => x.hatencion, null, new { @class = "label label-danger" })
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.incremoto, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(x => x.incremoto, new { @class = "input-12 col-sm-3", @readonly = "readonly" })
+
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(x => x.incidremoto, new { @class = "input-12 col-sm-3", @readonly = "readonly" })
+
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(x => x.incpasswordremoto, new { @class = "input-12 col-sm-3", @readonly = "readonly" })
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <hr />
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.fcreacion, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(x => x.fcreacion, new { @class = "input-12 col-sm-3", @readonly = "readonly" })
+
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(x => x.hcreacion, new { @class = "input-12 col-sm-3", @readonly = "readonly" })
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.incuser, new { @class = "col-sm-2 control-label pull-left" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(x => x.incuser, new { @class = "input-12 col-sm-4", @readonly = "readonly" })
+
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+
+
+                                    <div class="hr hr2 hr-double"></div>
+
+                                    <div class="wizard-actions">
+
+                                        <br />
+
+                                        <button type="submit" data-ajax="true" class="btn btn-primary">
+                                            Generar Ticket
+
+                                            <i class="ace-icon fa fa-floppy-o icon-on-right"></i>
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+    }
+
+

@@ -1,0 +1,16 @@
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Release\Model.dll.config
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Release\Model.dll
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Release\Model.pdb
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Release\EntityFramework.dll
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Release\EntityFramework.SqlServer.dll
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Release\EntityFramework.xml
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\bin\Release\EntityFramework.SqlServer.xml
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.csprojAssemblyReference.cache
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.Migrations.InitialTKIncidente.resources
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.Migrations.InitialTKIncidente2.resources
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.Migrations.Inicial.resources
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.csproj.GenerateResource.cache
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.csproj.CopyComplete
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.dll
+D:\DESARROLLO DE APPS\C#\MesaDeAyuda\Model\obj\Release\Model.pdb

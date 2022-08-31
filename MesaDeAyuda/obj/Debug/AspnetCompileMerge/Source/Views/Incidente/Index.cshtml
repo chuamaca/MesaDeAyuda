@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div>
+    <a href="~/incidente/tkcrud" class="btn  btn-success no-border btn-sm">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Generar Ticket
+    </a>
+
+    <a href="~/incidente/index" class="btn  btn-success no-border btn-sm">
+        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+        Listar
+    </a>
+</div>
+<br />
+
+
+
+
+<div id="list" class="table table-striped table-bordered table-hover table-responsive"></div>
+
+
+<script>
+    $(document).ready(function () {
+
+ 
+
+        $("#list").anexGrid({
+            columnas: [
+                { leyenda: 'TICKET', columna: 'numeroinc', ordenable: true },
+                { leyenda: 'EMPRESA', columna: 'incempresa', style: 'width:10px;', ordenable: true },
+                { leyenda: 'USUARIO', columna: 'incusuario', style: 'width:140px;', ordenable: true },
+
+                { leyenda: 'REPORTE', columna: 'fcreacion', style: 'width:140px;', ordenable: true },
+                { leyenda: 'ESTADO', columna: 'estadoinc', style: 'width:140px;', ordenable: true },
+
+
+
+                { style: 'width:10px;' },
+                { style: 'width:10px;' }
+            ],
+
+            modelo: [
+                {
+                    propiedad: 'numeroinc', formato: function (tr, obj, valor) {
+                        return anexGrid_link({
+                            href: '@Url.Content("~/incidente/tkcrud/")' + obj.idincidente,
+                            contenido: valor
+                        });
+                    }
+                },
+
+               {
+                   propiedad: 'incempresa', formato: function (tr, obj, valor) {
+                    return anexGrid_link({
+                        href: '@Url.Content("~/incidente/tkcrud/")' + obj.idincidente,
+                        contenido: valor
+                    });
+                }
+             },
+
+           
+                
+
+
+            
+                { propiedad: 'incusuario' },
+                { propiedad: 'fcreacion' },
+        
+
+
+
+                 {
+
+                     propiedad: 'estadoinc', formato: function (tr, obj, valor) {
+                         return valor == 1 ? "<span>Abierto</span>"  : "<span class='label label-danger'>Cerrado</span>";
+                         //return anexGrid_link({ href:  })
+                     }
+
+                 },
+
+
+
+
+                // BOTONES
+                {
+                    formato: function (tr, obj, valor) {
+                        return anexGrid_link({
+                            href: '@Url.Content("~/incidente/tkcrud/")' + obj.idincidente,
+                            contenido: '<i class="ace-icon fa	fa-eye  bigger-120 blue"></i>Ver',
+                            class: 'btn btn-light  btn-xs'
+                        });
+                    },
+                },
+                {
+                    formato: function (tr, obj, valor) {
+                        return anexGrid_link({
+                            href: '@Url.Content("~/incidente/eliminar/")' + obj.idincidente,
+                            contenido: '<i class="ace-icon fa fa-trash-o bigger-120 red"></i>',
+                            class: 'btn btn-light  btn-xs',
+                            attr: [
+                                'onclick="return confirm(\'¿Esta seguro de eliminar este registro?\')"'
+                            ]
+                        });
+                    },
+                }
+            ],
+
+            url: '@Url.Content("~/incidente/CargarIncidente")',
+            paginable: true,
+            limite: [20, 60, 100],
+            columna: 'id',
+            columna_orden: 'DESC'
+        });
+    })
+</script>
+

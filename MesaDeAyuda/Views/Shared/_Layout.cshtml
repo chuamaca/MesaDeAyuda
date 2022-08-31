@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - HelpDesk</title>
+
+    <link rel="stylesheet" href="~/assetsAce/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assetsAce/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/assetsAce/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="~/assetsAce/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="~/assetsAce/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="~/assetsAce/css/ace-rtl.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+       <script src="~/assetsAce/js/ace-extra.min.js"></script>
+    <script src="~/assetsAce/js/html5shiv.min.js"></script>
+    <script src="~/assetsAce/js/respond.min.js"></script>
+
+
+
+
+    <link href="~/Assets/css/formulario.css" rel="stylesheet" />
+    <script src="~/Assets/js/jquery.js"></script>
+
+
+</head>
+<body>
+
+    @*<div id="navbar" class="navbar navbar-default          ace-save-state">
+        <div class="navbar-container ace-save-state" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="~/home" class="navbar-brand">
+                    <small>
+                        <i class="fa fa-cogs"></i>
+                        Soporte Técnico
+                    </small>
+                </a>
+
+            </div>
+
+           <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav" style="">
+                   
+
+                    <li class="light-blue dropdown-modal user-min">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="~/assetsAce/images/avatars/user.jpg" alt="Jason's Photo">
+                            <span class="user-info">
+                                <small>Welcome,</small>
+                                Jason
+                            </span>
+
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-cog"></i>
+                                    Settings
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="profile.html">
+                                    <i class="ace-icon fa fa-user"></i>
+                                    Profile
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Overview
+                            &nbsp;
+                            <i class="ace-icon fa fa-angle-down bigger-110"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-eye bigger-110 blue"></i>
+                                    Monthly Visitors
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-user bigger-110 blue"></i>
+                                    Active Users
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="ace-icon fa fa-envelope"></i>
+                            Messages
+                            <span class="badge badge-warning">5</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <form class="navbar-form navbar-left form-search" role="search">
+                    <div class="form-group">
+                        <input type="text" placeholder="search">
+                    </div>
+
+                    <button type="button" class="btn btn-mini btn-info2">
+                        <i class="ace-icon fa fa-search icon-only bigger-110"></i>
+                    </button>
+                </form>
+            </nav>
+        </div> /.navbar-container 
+    </div>*@
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("NETCORPORATE", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+               
+
+                    <ul class="nav navbar-nav">
+                 
+
+
+
+                        @*@if (Request.IsAuthenticated && User.IsInRole("Admin") && User.IsInRole("User"))
+                        {*@
+
+                            <li class="">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Menu Administrador
+                                    &nbsp;
+                                    <i class="ace-icon fa fa-angle-down bigger-110"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                                    <li>
+                                        @Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")
+                                    </li>
+
+                                    <li>
+                                        @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")
+                                    </li>
+
+                                    <li>
+                                        @Html.ActionLink("Empresa", "Index", "Empresa")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Registro de Ticket", "tkcrud", "incidente")
+                                    </li>
+
+                                    <li>
+                                        @Html.ActionLink("Mis Ticket 2", "nuevoticket", "incidente")
+                                    </li>
+
+                                    <li>
+                                        @Html.ActionLink("Mis Ticket", "Index", "incidente")
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+                        @*}*@
+
+                        @*@if (Request.IsAuthenticated && User.IsInRole("User"))
+                        {*@
+
+                            <li class="">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Menu Tickets
+                                    &nbsp;
+                                    <i class="ace-icon fa fa-angle-down bigger-110"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                                   
+
+                              
+                                    <li>
+                                        @Html.ActionLink("Registro de Ticket", "Nuevoticket", "incidente")
+                                    </li>
+
+                                    <li>
+                                        @Html.ActionLink("Mis Ticket", "Index", "incidente")
+                                    </li>
+
+                                   
+                                </ul>
+                            </li>
+
+                        @*}*@
+
+
+                    </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+  
+
+    <br />
+
+    <br />
+
+    <br />
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Soporte Técnico - NETCORPORATE</p>
+        </footer>
+    </div>
+
+
+
+
+
+    <script src="~/Assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+    <script src="~/Assets/js/jquery.form.js"></script>
+
+    <script src="~/Assets/js/ini.js"></script>
+
+    <script src="~/Assets/js/jquery.anexgrid.min.js"></script>
+    <script src="~/Assets/js/jquery.validate.min.js"></script>
+    <script src="~/Assets/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/assetsAce/js/bootstrap.min.js"></script>
+
+
+
+
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+</html>

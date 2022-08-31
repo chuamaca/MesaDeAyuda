@@ -1,0 +1,6 @@
+Para levantar de cero la DB 
+
+y tener acceso como ROL Admin se debe llenar la siguiente tabla de la siguiente manera.
+
+Id					Name	Descripcion	Discriminator
+457c5de8-63ab-419b-9d32-4f3ecef247e7	Admin	Administrador	ApplicationRole

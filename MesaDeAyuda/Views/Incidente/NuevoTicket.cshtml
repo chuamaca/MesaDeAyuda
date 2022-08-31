@@ -1,0 +1,670 @@
+﻿@model Model.TKincidente
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Crud";
+
+
+    List<Model.TKtipoticket> mitipoticket = ViewBag.mitipotiki;
+}
+
+
+<script src="~/Assets/wizard.js"></script>
+
+<link href="~/Assets/wizard.css" rel="stylesheet" />
+
+
+@*<script>
+    $(function () {
+        var dateFormat = "",
+            from = $("#fcreacion")
+                .datepicker({
+                    defaultDate: "+1w",
+                    beforeShowDay: $.datepicker.noWeekends,
+                    dateFormat: "dd/mm/yy",
+                    changeMonth: true,
+                    numberOfMonths: 1
+                })
+                .on("change", function () {
+                    to.datepicker("option", "minDate", getDate(this));
+                }),
+            to = $("#fcreacion").datepicker({
+                defaultDate: "+1w",
+                beforeShowDay: $.datepicker.noWeekends,
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                numberOfMonths: 1
+            })
+                .on("change", function () {
+                    from.datepicker("option", "maxDate", getDate(this));
+                });
+        function getDate(element) {
+            var date;
+            try {
+                date = $.datepicker.parseDate(dateFormat = "dd/mm/yy", element.value);
+            } catch (error) {
+                date = null;
+            }
+            return date;
+        }
+    });
+</script>*@
+
+<script>
+    window.onload = function () {
+        var fecha = new Date(); //Fecha actual
+        var mes = fecha.getMonth() + 1; //obteniendo mes
+        var dia = fecha.getDate(); //obteniendo dia
+        var ano = fecha.getFullYear(); //obteniendo año
+        if (dia < 10)
+            dia = '0' + dia; //agrega cero si el menor de 10
+        if (mes < 10)
+            mes = '0' + mes //agrega cero si el menor de 10
+
+        ab = document.getElementById("fcreacion");
+
+
+        if (ab.value == "") {
+            document.getElementById('fcreacion').value = dia + "/" + mes + "/" + ano;
+            document.getElementById('fatencion').value = dia + "/" + mes + "/" + ano;
+        } else {
+            document.getElementById("fcreacion");
+            document.getElementById("fatencion");
+
+        }
+
+
+    }
+</script>
+
+<script src="https://cdn.tiny.cloud/1/3etaw353ael3wf9p9ywj3ssf3uhbh6agxpjtp00i48kn1b6u/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+<script>
+    tinymce.init({
+        selector: 'TextAreaFor',
+        plugins: 'lists',
+        menubar: 'file edit format'
+
+    });
+</script>
+
+
+
+@using (Html.BeginForm("Guardar", "Incidente", FormMethod.Post))
+{
+
+
+    <div class="row">
+        @*<div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step col-xs-3">
+                        <a href="#step-1" type="button" class="btn btn-success steps">1</a>
+                        <span class="title">Datos del <br />
+                         Solicitante</span>
+                    </div>
+                    <div class="stepwizard-step col-xs-3">
+                        <a href="#step-2" type="button" class="btn btn-success steps" disabled="disabled">2</a>
+                        <span class="title">
+                            Detalles del<br>
+                            Incidente
+                        </span>
+                    </div>
+                    <div class="stepwizard-step col-xs-3">
+                        <a href="#step-3" type="button" class="btn btn-success steps" disabled="disabled">3</a>
+                        <span class="title">
+
+                            Conexión e<br>
+                            Imágenes
+                        </span>
+                    </div>
+                    <div class="stepwizard-step col-xs-3">
+                        <a href="#step-4" type="button" class="btn btn-success steps" disabled="disabled">4</a>
+                        <span class="title">
+                            Genera<br>
+                            Ticket
+                        </span>
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="stepwizard">
+            <div class="stepwizard-row setup-panel">
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+                    <br />
+
+                    <span class="title alert-info">
+                        Datos del <br />
+                        Solicitante
+                    </span>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                    <br />
+
+                    <span class="title alert-info">
+                        Detalles del<br>
+                        Incidente
+                    </span>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                    <span class="title alert-info">
+                        <br />
+
+                        Conexión <br>
+                        Imágenes
+                    </span>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                    <br />
+
+                    <span class="title">
+                        Generar<br>
+                        Ticket
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <form role="form">
+
+
+
+
+            <div class="panel panel-primary setup-content" id="step-1">
+                @*<div class="panel-heading">
+                        <h3 class="panel-title">Shipper</h3>
+                    </div>*@
+                <div class="panel-body">
+
+                    <div class="form-horizontal">
+
+
+                        <div>
+
+                            @Html.TextBoxFor(x => x.idincidente, htmlAttributes: new { @type = "hidden" })
+                            @Html.TextBoxFor(x => x.fcreacion, new { @class = "input-12", @type = "hidden" })
+                            @Html.TextBoxFor(x => x.hcreacion, htmlAttributes: new { @type = "hidden" })
+                            @Html.TextBoxFor(x => x.estadoinc, htmlAttributes: new { @Value = "1", @type = "hidden" })
+                            @Html.TextBoxFor(x => x.incuser, htmlAttributes: new { @Value = User.Identity.GetUserName(), @type = "hidden" })
+
+                            @*<script type="text/javascript">
+                                    $(function () {
+                                        $('#fcreacion').datetimepicker();
+                                    });
+                                </script>*@
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.incempresa, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.incempresa, new { @class = "input-sm col-sm-12", placeholder = "Razon Social" })
+                                @Html.ValidationMessageFor(x => x.incempresa, null, new { @class = "label label-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.incusuario, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(x => x.incusuario, new { @class = "input-sm col-sm-12", placeholder = "Usuario Final" })
+                                @Html.ValidationMessageFor(x => x.incusuario, null, new { @class = "label label-danger" })
+                            </div>
+
+                            @Html.LabelFor(x => x.incemail, new { @class = "col-sm-1 control-label pull-left" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(x => x.incemail, new { @class = "input-sm col-sm-10", placeholder = "Correo" })
+                                @Html.ValidationMessageFor(x => x.incemail, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+
+                            @Html.LabelFor(x => x.inctelefono, new { @class = "col-sm-2 control-label pull-left" })
+
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(x => x.inctelefono, new { @class = "input-sm col-sm-12", placeholder = "Telefono" })
+                                @Html.ValidationMessageFor(x => x.inctelefono, null, new { @class = "label label-danger" })
+                            </div>
+
+                            @Html.LabelFor(x => x.incdirsecundario, new { @class = "col-sm-1 control-label pull-left" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.incdirsecundario, new { @class = "input-sm col-sm-12", placeholder = "Dirección" })
+                                @Html.ValidationMessageFor(x => x.incdirsecundario, null, new { @class = "label label-danger" })
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="form-group">
+
+
+
+                            @Html.LabelFor(x => x.fatencion, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(x => x.fatencion, new { @class = "input-sm col-sm-6 datepicker", placeholder = "Fecha de Atencion" })
+                                @Html.ValidationMessageFor(x => x.fatencion, null, new { @class = "label label-danger" })
+                            </div>
+
+                            @*<script type="text/javascript">
+                                    $(function () {
+                                        $('#fatencion').datetimepicker();
+                                    });
+                                </script>*@
+
+
+                            @Html.LabelFor(x => x.hatencion, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(x => x.hatencion, new { @class = "input-sm col-sm-3", placeholder = "Fecha de Atencion" })
+                                @Html.ValidationMessageFor(x => x.hatencion, null, new { @class = "label label-danger" })
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <button class="btn btn-primary nextBtn pull-right" type="button">Siguiente</button>
+                </div>
+            </div>
+
+            <div class="panel panel-primary setup-content" id="step-2">
+                @*<div class="panel-heading">
+                        <h3 class="panel-title">Destination</h3>
+                    </div>*@
+                <div class="panel-body">
+
+
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+
+                            @Html.LabelFor(x => x.numeroinc, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(x => x.numeroinc, new { @class = "input-sm col-sm-6", placeholder = "N° Ticket" })
+                                @Html.ValidationMessageFor(x => x.numeroinc, null, new { @class = "label label-danger" })
+                            </div>
+
+
+                            @Html.LabelFor(x => x.inccasoempresa, new { @class = "col-sm-1 control-label pull-left" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.inccasoempresa, new { @class = "input-sm col-sm-4", placeholder = "N° Ticket Interno" })
+                                @Html.ValidationMessageFor(x => x.inccasoempresa, null, new { @class = "label label-danger" })
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.tipoticket, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-3">
+
+                                <select class="collapsed-box input-12" name="tipoticket" id="tipoticket">
+                                    <option value="0" class="text-red">  SELECCIONE SU TIPO DE TICKET   </option>
+
+                                    @foreach (var c in mitipoticket)
+                                    {
+
+                                        <option value="@c.tipoticket"> @c.tipoticket </option>
+
+                                    }
+                                </select>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.incbrevedescripcion, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(x => x.incbrevedescripcion, new { @class = "input-sm col-sm-10", placeholder = "Breve Descripcion de Ticket" })
+                                @Html.ValidationMessageFor(x => x.incbrevedescripcion, null, new { @class = "label label-danger" })
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.incdescripcion, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(x => x.incdescripcion, new { @class = "input-sm col-sm-10", placeholder = "Minimo 50 Caracteres", @rows = "4" })
+                                @Html.ValidationMessageFor(x => x.incdescripcion, null, new { @class = "label label-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+
+
+
+                            <label class="col-sm-2 control-label pull-left"> Evidencia *.jpg, *.mail</label>
+                            <div class="col-md-4">
+                                <input type="file" name="imgreferencia" />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="btn btn-primary nextBtn pull-right" type="button">Siguiente</button>
+
+
+
+
+                </div>
+            </div>
+
+            <div class="panel panel-primary setup-content" id="step-3">
+                @*<div class="panel-heading">
+                        <h3 class="panel-title">Schedule</h3>
+                    </div>*@
+                <div class="panel-body">
+
+
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+
+                            @Html.LabelFor(x => x.incremoto, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-6">
+                                <input type="radio" value="Anydesk" name="incremoto" onchange="habilitar(this.value);"> Any Desk
+
+                                <input type="radio" value="Teamviwer" name="incremoto" onchange="habilitar(this.value);"> Teamviewer
+
+                                <input type="radio" value="Otros" name="incremoto" onchange="habilitar(this.value);"> Otros
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+
+
+                            @Html.LabelFor(x => x.incidremoto, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.incidremoto, new { @class = "input-sm col-sm-6", placeholder = "ID" })
+                                @Html.ValidationMessageFor(x => x.incidremoto, null, new { @class = "label label-danger" })
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+                            @Html.LabelFor(x => x.incpasswordremoto, new { @class = "col-sm-2 control-label pull-left" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.incpasswordremoto, new { @class = "input-sm col-sm-6", placeholder = "Password" })
+                                @Html.ValidationMessageFor(x => x.incpasswordremoto, null, new { @class = "label label-danger" })
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <button class="btn btn-primary nextBtn pull-right" type="button">Siguiente</button>
+
+
+
+                </div>
+            </div>
+
+            <div class="panel panel-primary setup-content" id="step-4">
+                @*<div class="panel-heading">
+                        <h3 class="panel-title">Genera Ticket</h3>
+                    </div>*@
+                <div class="panel-body">
+
+
+                    <div class="form-horizontal">
+
+
+
+                        <div class="form-group">
+
+                            <div class="alert alert-danger no-margin alert-dismissable">
+
+
+                                <i class="ace-icon fa fa-bolt bigger-120 alert-danger"></i>
+
+                                <strong> Muy Importante !  </strong> <p></p>
+
+
+
+                                Antes de Generar Su Ticket revise los datos registrado sea real y suficiente, caso contrario el ticket sera cerrado automaticamente sin opcion a reclamo.
+
+
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="widget-header widget-header-small">
+                                <h4 class="widget-title blue smaller">
+                                    <i class="ace-icon fa fa-users orange"></i>
+                                    1. Datos del Solicitante
+                                </h4>
+
+                                <!--<div class="stepwizard-row pull-right">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" class="">
+
+                                        <h4 class="blue">Modificar</h4>-->
+                                @*<i class="ace-icon fa fa-pencil-square-o blue"></i>
+                                    Modificar*@
+                                <!--</a>
+                                        <br />
+
+
+                                    </div>
+                                </div>-->
+
+
+                                <div class="stepwizard-step pull-right">
+                                    <a href="#step-1">
+                                        <i class="ace-icon fa fa-pencil-square-o blue"></i> Modificar
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <div class="profile-user-info profile-user-info-striped">
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Usuario </div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="username">alexdoe</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Contacto </div>
+
+                                    <div class="profile-info-value">
+                                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                        <span class="editable editable-click" id="country">914124976</span>
+                                        <span class="editable editable-click" id="city">chuamani@netcorporate.net</span>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Atención </div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="signup">2010/06/20</span>
+                                        <span class="editable editable-click" id="city">10:00 PM</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="widget-header widget-header-small">
+                                <h4 class="widget-title blue smaller">
+                                    <i class="ace-icon fa fa-briefcase orange"></i>
+                                    2. Detalles del Incidente
+                                </h4>
+
+                                @*<div class="widget-toolbar action-buttons">
+                                        <a href="#" data-action="reload">
+                                            <i class="ace-icon fa fa-refresh blue"></i>
+                                        </a>
+                                        &nbsp;
+                                        <a href="#" class="pink">
+                                            <i class="ace-icon fa fa-trash-o"></i>
+                                        </a>
+                                    </div>*@
+
+                                <div class="stepwizard-step pull-right">
+                                    <a href="#step-2">
+                                        <i class="ace-icon fa fa-pencil-square-o blue"></i> Modificar
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <div class="profile-user-info profile-user-info-striped">
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Tipo Soporte </div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="username">Incidente</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Asunto </div>
+
+                                    <div class="profile-info-value">
+                                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                        <span class="editable editable-click" id="country">Netherlands</span>
+
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Descripcion </div>
+
+                                    <div class="profile-info-value">
+                                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                        <span class="editable editable-click" id="country">No tengo Acceso a correo. Mi correo esta poniedose Lento</span>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="widget-header widget-header-small">
+                                <h4 class="widget-title blue smaller">
+                                    <i class="ace-icon fa fa-lightbulb-o orange"></i>
+                                    3. Conexion e Imagenes
+                                </h4>
+
+                                <div class="stepwizard-step pull-right">
+                                    <a href="#step-3">
+                                        <i class="ace-icon fa fa-pencil-square-o blue"></i> Modificar
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="profile-user-info profile-user-info-striped">
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Programa </div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="username">Team Viwer / Anydesk</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> ID / Acceso </div>
+
+                                    <div class="profile-info-value">
+                                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                        <span class="editable editable-click" id="country">564798312</span>
+                                        <span class="editable editable-click" id="city">Am1245</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <button class="btn btn-success pull-right" data-ajax="true" type="submit">Generar Ticket!</button>
+
+
+                </div>
+            </div>
+
+
+
+
+
+        </form>
+    </div>
+
+}
+
+
+@*<script>
+        function habilitar(value) {
+            if (value == true) {
+                // habilitamos
+                document.getElementById("segundo").disabled = false;
+            } else if (value == false) {
+                // deshabilitamos
+                document.getElementById("segundo").disabled = true;
+            }
+        }
+    </script>*@
+
+<script>
+    function habilitar(value) {
+        if (value == "1") {
+            // habilitamos
+            document.getElementById("segundo").disabled = false;
+        } else if (value == "2") {
+            // deshabilitamos
+            document.getElementById("segundo").disabled = true;
+        }
+    }
+</script>
+
+

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MesaDeAyuda", "MesaDeAyuda\MesaDeAyuda.csproj", "{C155D203-75C8-498F-B944-0CA2981E5690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{BBD90274-E70A-4E8D-B671-10E2C214E6C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C155D203-75C8-498F-B944-0CA2981E5690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C155D203-75C8-498F-B944-0CA2981E5690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C155D203-75C8-498F-B944-0CA2981E5690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C155D203-75C8-498F-B944-0CA2981E5690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBD90274-E70A-4E8D-B671-10E2C214E6C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBD90274-E70A-4E8D-B671-10E2C214E6C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBD90274-E70A-4E8D-B671-10E2C214E6C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBD90274-E70A-4E8D-B671-10E2C214E6C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3C88E0F-A69C-454C-9D9E-ADBF708B08B7}
+	EndGlobalSection
+EndGlobal

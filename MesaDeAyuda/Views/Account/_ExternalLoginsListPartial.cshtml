@@ -1,0 +1,93 @@
+﻿@model IdentitySample.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+<hr />
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0) {
+ 
+           
+                <div class="error-container">
+                    <div class="well">
+                        <h1 class="grey lighter smaller">
+                            <span class="blue bigger-125">
+                                <i class="ace-icon fa fa-sitemap"></i>
+                                Importante !
+                            </span>
+                          
+                        </h1>
+
+                        <hr>
+                        <h3 class="lighter smaller">
+                            
+                            <i class="ace-icon fa fa-hand-o-right blue"></i>  Por favor tener en cuenta que el tiempo de atención de un Ticket, es de 02 a 24 horas,
+                            según el nivel de complejidad de su incidente y de la cantidad de ticket registrados en cola.
+                            Le agradeceremos estar atento a la llamada de nuestro Analista, quien se comunicará con usted para contactarlo.
+                            Tenga en cuenta que de registrar el Ticket para una atención con fecha posterior, éste será cerrado automáticamente. 
+                           
+                        </h3>
+
+                        @*<div>
+                            <form class="form-search">
+                                <span class="input-icon align-middle">
+                                    <i class="ace-icon fa fa-search"></i>
+
+                                    <input type="text" class="search-query" placeholder="Give it a search...">
+                                </span>
+                                <button class="btn btn-sm" type="button">Go!</button>
+                            </form>
+
+                            <div class="space"></div>
+                            <h4 class="smaller">Try one of the following:</h4>
+
+                            <ul class="list-unstyled spaced inline bigger-110 margin-15">
+                                <li>
+                                    <i class="ace-icon fa fa-hand-o-right blue"></i>
+                                    Re-check the url for typos
+                                </li>
+
+                                <li>
+                                    <i class="ace-icon fa fa-hand-o-right blue"></i>
+                                    Read the faq
+                                </li>
+
+                                <li>
+                                    <i class="ace-icon fa fa-hand-o-right blue"></i>
+                                    Tell us about it
+                                </li>
+                            </ul>
+                        </div>*@
+
+                        <hr>
+                        <div class="space"></div>
+
+                        @*<div class="center">
+                            <a href="javascript:history.back()" class="btn btn-grey">
+                                <i class="ace-icon fa fa-arrow-left"></i>
+                                Go Back
+                            </a>
+
+                            <a href="#" class="btn btn-primary">
+                                <i class="ace-icon fa fa-tachometer"></i>
+                                Dashboard
+                            </a>
+                        </div>*@
+                    </div>
+                </div>
+
+
+    
+    }
+    else {
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            <div id="socialLoginList">
+                <p>
+                    @foreach (AuthenticationDescription p in loginProviders) {
+                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                    }
+                </p>
+            </div>
+        }
+    }
+}
